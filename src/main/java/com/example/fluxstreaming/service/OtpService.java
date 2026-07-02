@@ -129,26 +129,26 @@ public class OtpService {
             // Evaluamos de forma estricta e inyectamos la plantilla correspondiente
             String mensajeFinal = switch (contexto) {
                 case REGISTER_SELLER ->
-                        "🚀 *Luna Plataformas — Registro*\n\n" +
+                        "🚀 *Flux Streaming — Registro*\n\n" +
                                 "Tu código de verificación es: * " + codigo + " *.\n" +
                                 "Expirará en 5 minutos.";
 
                 case REGISTER_PROVIDER ->
-                        "🔑 *Luna Plataformas — Registro de Proveedor*\n\n" +
+                        "🔑 *Flux Streaming — Registro de Proveedor*\n\n" +
                                 "Tu código de verificación es: * " + codigo + " *\n\n" +
                                 "Por seguridad, no compartas este código con nadie.";
 
                 case PASSWORD_RESET ->
-                        "🔒 *Luna Streaming — Recuperación de Contraseña*\n\n" +
+                        "🔒 *Flux Streaming — Recuperación de Contraseña*\n\n" +
                                 "Has solicitado restablecer tu contraseña. Ingresa el código: * " + codigo + " *.\n\n" +
                                 "Si no solicitaste esto, ignora este mensaje.";
 
                 case CHANGE_PHONE ->
-                        "📱 *Luna Streaming — Cambio de Celular*\n\n" +
+                        "📱 *Flux Streaming — Cambio de Celular*\n\n" +
                                 "Código de confirmación para vincular este número de WhatsApp: * " + codigo + " *.";
 
                 case SENSITIVE_TRANSACTION ->
-                        "⚠️ *Luna Streaming — Operación Crítica*\n\n" +
+                        "⚠️ *Flux Streaming — Operación Crítica*\n\n" +
                                 "Código temporal para autorizar tu solicitud: * " + codigo + " *.";
             };
 

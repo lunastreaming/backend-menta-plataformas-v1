@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
 import java.util.function.Function;
@@ -129,9 +130,22 @@ public class SupportTicketService {
 
     // Conversión Entity -> DTO
     private SupportTicketDTO toDTO(SupportTicketEntity entity) {
+        Instant endTime = (entity.getResolvedAt() != null)
+                ? entity.getResolvedAt()
+                : Instant.now();
+
+        Long secondsOpen = null;
+        String formattedTime = null;
+
+        if (entity.getCreatedAt() != null) {
+            Duration duration = Duration.between(entity.getCreatedAt(), endTime);
+            secondsOpen = duration.getSeconds();
+            formattedTime = formatDuration(duration);
+        }
+
         return SupportTicketDTO.builder()
                 .id(entity.getId())
-                .stockId(entity.getStock().getId())
+                .stockId(entity.getStock() != null ? entity.getStock().getId() : null)
                 .issueType(entity.getIssueType())
                 .description(entity.getDescription())
                 .status(entity.getStatus())
@@ -139,7 +153,24 @@ public class SupportTicketService {
                 .updatedAt(entity.getUpdatedAt())
                 .resolvedAt(entity.getResolvedAt())
                 .resolutionNote(entity.getResolutionNote())
+                .openTimeInSeconds(secondsOpen)       // 🆕
+                .formattedOpenTime(formattedTime)     // 🆕
                 .build();
+    }
+
+    // Método auxiliar para formatear a un string legible
+    private String formatDuration(Duration duration) {
+        long days = duration.toDays();
+        long hours = duration.toHoursPart();
+        long minutes = duration.toMinutesPart();
+
+        if (days > 0) {
+            return String.format("%dd %dh", days, hours);
+        } else if (hours > 0) {
+            return String.format("%dh %dm", hours, minutes);
+        } else {
+            return String.format("%dm", Math.max(1, minutes));
+        }
     }
 
     // Cliente: devolver StockResponse para tickets OPEN

@@ -22,4 +22,8 @@ public class SupportTicketDTO {
     private Instant resolvedAt;
     private String resolutionNote;
 
+    // 🆕 Campos calculados
+    private Long openTimeInSeconds; // Para cálculos exactos o formateo personalizado en UI
+    private String formattedOpenTime; // Ej: "2 días 4 horas"
+
 }

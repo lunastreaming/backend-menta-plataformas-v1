@@ -440,4 +440,12 @@ public class SupportTicketService {
 
         return dto;
     }
+
+    @Transactional(readOnly = true)
+    public SupportTicketDTO getOpenTicketByStockId(Long stockId) {
+        return supportTicketRepository.findByStockIdAndStatus(stockId, "OPEN")
+                .map(this::toDTO)
+                .orElseThrow(() -> new RuntimeException("No open support ticket found for stock ID: " + stockId));
+    }
+
 }

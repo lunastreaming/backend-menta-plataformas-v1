@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -72,5 +73,8 @@ public interface SupportTicketRepository extends JpaRepository<SupportTicketEnti
             "AND stock_id IN (SELECT id FROM stocks WHERE deleted = true)",
             nativeQuery = true)
     void resolveTicketsWithDeletedStocks();
+
+
+    Optional<SupportTicketEntity> findByStockIdAndStatus(Long stockId, String status);
 
 }

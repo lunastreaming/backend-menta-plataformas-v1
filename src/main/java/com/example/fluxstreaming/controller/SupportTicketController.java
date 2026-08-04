@@ -95,4 +95,10 @@ public class SupportTicketController {
         return ResponseEntity.ok(supportTicketService.approve(id, request));
     }
 
+    @GetMapping("/stock/{stockId}/open")
+    public ResponseEntity<SupportTicketDTO> getOpenTicketByStockId(@PathVariable Long stockId) {
+        SupportTicketDTO dto = supportTicketService.getOpenTicketByStockId(stockId);
+        return ResponseEntity.ok(dto);
+    }
+
 }

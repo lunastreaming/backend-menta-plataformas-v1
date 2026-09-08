@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 public class WebConfig {
 
-    @Value("${spring.cors.allowed-origins:https://www.mentaplataformas.com,https://mentaplataformas.com}")
+    @Value("${spring.cors.allowed-origins:https://www.mentasplataformas.com,https://mentasplataformas.com}")
     private List<String> allowedOrigins;
 
     @Bean

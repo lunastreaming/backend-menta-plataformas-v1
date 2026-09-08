@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>fluxstreaming</artifactId>
+	<artifactId>mentaplataformas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fluxstreaming</name>
-	<description>Flux Streaming Project</description>
+	<name>mentaplataformas</name>
+	<description>Menta Plataformas Project</description>
 	<url/>
 	<licenses>
 		<license/>
